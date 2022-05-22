@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             newTask.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AddNewTask.newInstance().show(getSupportFragmentManager() , AddNewTask.TAG);
+                    new AddNewTask().show(getSupportFragmentManager() , AddNewTask.TAG);
                 }
             });
             mDatabase.child("test").addValueEventListener(new ValueEventListener() {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         arrayList.add(task);
                     }
 
-                    TaskListAdapter adapter = new TaskListAdapter(context, arrayList);
+                    TaskListAdapter adapter = new TaskListAdapter(context, arrayList, getSupportFragmentManager());
                     ListView listView = (ListView) findViewById(R.id.to_do_list);
                     listView.setAdapter(adapter);
                     Log.d("####### Test", dataSnapshot.getValue().toString());

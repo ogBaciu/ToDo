@@ -31,10 +31,13 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.database.DatabaseReference;
 
+import org.w3c.dom.Document;
+
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class AddNewTask  extends BottomSheetDialogFragment {
 
@@ -51,10 +54,29 @@ public class AddNewTask  extends BottomSheetDialogFragment {
     private String dueDateUpdate = "";
     public TaskModel task1;
     private DatabaseReference database;
+    private Boolean editable = false;
+    private String uuid;
+    private String taskName;
 
-    public static AddNewTask newInstance(){
-        return new AddNewTask();
+    public AddNewTask(){}
+
+    public AddNewTask (String uuid, String name, String dueDate){
+        Log.d("####### Delete", uuid + " " + name + " " + dueDate);
+        this.uuid = uuid;
+        this.dueDate = dueDate;
+        this.taskName = name;
+        this.editable = true;
+//        this.mTaskEdit.setText(name);
     }
+
+//    public static AddNewTask newInstance(){
+//        return new AddNewTask();
+//    }
+
+//    public AddNewTask editInstance(TaskModel task){
+//        this.mTaskEdit.setText(task.getName());
+//        this.dueDate = task.getDueDate();
+//    }
 
     @Nullable
     @Override
@@ -73,7 +95,9 @@ public class AddNewTask  extends BottomSheetDialogFragment {
 
         firestore = FirebaseFirestore.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
-
+        if(editable){
+            mTaskEdit.setText(taskName);
+        }
 
         boolean isUpdate = false;
 
@@ -120,10 +144,16 @@ public class AddNewTask  extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
-
                 int MONTH = calendar.get(Calendar.MONTH);
                 int YEAR = calendar.get(Calendar.YEAR);
                 int DAY = calendar.get(Calendar.DATE);
+
+                if(editable){
+                    String[] parts = dueDate.split("/");
+                    DAY = Integer.parseInt(parts[0]);
+                    MONTH = Integer.parseInt(parts[1]) - 1;
+                    YEAR = Integer.parseInt(parts[2]);
+                }
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -139,51 +169,21 @@ public class AddNewTask  extends BottomSheetDialogFragment {
             }
         });
 
-        boolean finalIsUpdate = isUpdate;
         mSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String task = mTaskEdit.getText().toString();
-
-
-                if (finalIsUpdate){
-//                    firestore.collection("test").document(id).update("name" , task , "dueDate" , dueDate);
-
-                    Toast.makeText(context, "Task Updated", Toast.LENGTH_SHORT).show();
-
-                }
-                else {
-                    if (task.isEmpty()) {
+                String taskName = mTaskEdit.getText().toString();
+                    if (taskName.isEmpty()) {
                         Toast.makeText(context, "Empty task not Allowed !!", Toast.LENGTH_SHORT).show();
                     } else {
-
-                        Map<String, Object> taskMap = new HashMap<>();
-
-//                        taskMap.put("name", task);
-//                        taskMap.put("dueDate", dueDate);
-//                        taskMap.put("status", 0);
-//                        taskMap.put("time", FieldValue.serverTimestamp());
-                        TaskModel task1 = new TaskModel(task, dueDate.toString());
-                        database.child("test").child(task).setValue(task1);
-//                        firestore.collection("task").add(taskMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<DocumentReference> task) {
-//                                if (task.isSuccessful()) {
-//                                    Toast.makeText(context, "Task Saved", Toast.LENGTH_SHORT).show();
-//
-//                                } else {
-//                                    Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
+                        String newUuid = editable == true ? uuid : UUID.randomUUID().toString();
+                        TaskModel newTask = new TaskModel( newUuid, taskName, dueDate);
+                        database.child("test").child(newUuid).setValue(newTask).addOnCompleteListener(res -> {
+                            Toast.makeText(context, "Task Saved", Toast.LENGTH_SHORT).show();
+                        }).addOnFailureListener(res -> {
+                            Toast.makeText(context, res.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
                     }
-                }
                 dismiss();
             }
         });

@@ -34,6 +34,19 @@
             android:textSize="14sp"
             tools:ignore="RtlHardcoded" />
 
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:gravity="top|right"
+            android:text="@string/delete_task_button" />
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:gravity="top|right"
+            android:text="@string/edit_task_button" />
     </LinearLayout>
 
 </LinearLayout>

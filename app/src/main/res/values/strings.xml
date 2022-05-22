@@ -13,4 +13,6 @@
     <string name="enterEmailId">Enter the registered Email ID</string>
     <string name="reset_password">Reset Password</string>
     <string name="user_domain_com">user@domain.com</string>
+    <string name="delete_task_button">Delete</string>
+    <string name="edit_task_button">Edit</string>
 </resources>

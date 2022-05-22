@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Work/Gabi/ToDo/app/src/main/res/layout/activity_main.xml" value="0.21073961499493415" />
+        <entry key="..\:/Work/Gabi/ToDo/app/src/main/res/layout/activity_sign_in.xml" value="0.20339412360688958" />
+        <entry key="..\:/Work/Gabi/ToDo/app/src/main/res/layout/activity_welcome.xml" value="0.21073961499493415" />
+        <entry key="..\:/Work/Gabi/ToDo/app/src/main/res/layout/add_new_task.xml" value="0.1933876811594203" />
+        <entry key="..\:/Work/Gabi/ToDo/app/src/main/res/layout/custom_list_view.xml" value="0.20339412360688958" />
         <entry key="..\:/cursuri/ToDoList/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.2425" />
         <entry key="..\:/cursuri/ToDoList/app/src/main/res/layout/activity_login.xml" value="0.1793478260869565" />
         <entry key="..\:/cursuri/ToDoList/app/src/main/res/layout/activity_main.xml" value="0.13601823708206687" />

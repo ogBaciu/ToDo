@@ -1,11 +1,13 @@
 package com.example.todolist;
 public class TaskModel {
+    public String uuid;
     public String name;
     public String dueDate;
 
     public TaskModel() {}
 
-    public TaskModel(String name, String dueDate){
+    public TaskModel(String uuid, String name, String dueDate){
+        this.uuid = uuid;
         this.name = name;
         this.dueDate = dueDate;
     }
@@ -16,5 +18,9 @@ public class TaskModel {
 
     public String getDueDate() {
         return dueDate;
+    }
+
+    public String getuuid() {
+        return uuid;
     }
 }

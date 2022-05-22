@@ -36,10 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
-
         mAuth = FirebaseAuth.getInstance();
-
         signUpEmailTextInput = findViewById(R.id.signUpEmailTextInput);
         signUpPasswordTextInput = findViewById(R.id.signUpPasswordTextInput);
         signUpButton = findViewById(R.id.signUpButton);
@@ -52,25 +49,12 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (signUpEmailTextInput.getText().toString().contentEquals("")) {
-
-
                     errorView.setText("Email cannot be empty");
-
-
                 } else if (signUpPasswordTextInput.getText().toString().contentEquals("")) {
-
-
                     errorView.setText("Password cannot be empty");
-
-
                 } else if (!agreementCheckBox.isChecked()) {
-
                     errorView.setText("Please agree to terms and Condition");
-
-
                 } else {
-
-
                     mAuth.createUserWithEmailAndPassword(signUpEmailTextInput.getText().toString(), signUpPasswordTextInput.getText().toString()).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -112,8 +96,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                                                             // show it
                                                             alertDialog.show();
-
-
                                                         }
                                                     }
                                                 });
@@ -140,8 +122,5 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 }
