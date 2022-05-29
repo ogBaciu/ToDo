@@ -27,8 +27,6 @@ public class SignInActivity extends AppCompatActivity {
     EditText emailTextInput;
     EditText passwordTextInput;
     Button signInButton;
-    Button forgotPasswordButton;
-    Button sendVerifyMailAgainButton;
     TextView errorView;
 
     @Override
@@ -40,12 +38,7 @@ public class SignInActivity extends AppCompatActivity {
         emailTextInput = findViewById(R.id.signInEmailTextInput);
         passwordTextInput = findViewById(R.id.signInPasswordTextInput);
         signInButton = findViewById(R.id.signInButton);
-        forgotPasswordButton = findViewById(R.id.forgotPasswordButton);
-        sendVerifyMailAgainButton = findViewById(R.id.verifyEmailAgainButton);
         errorView = findViewById(R.id.signInErrorView);
-
-        sendVerifyMailAgainButton.setVisibility(View.INVISIBLE);
-
         mAuth = FirebaseAuth.getInstance();
 
         signInButton.setOnClickListener(new View.OnClickListener() {
@@ -53,18 +46,10 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (emailTextInput.getText().toString().contentEquals("")) {
-
-
                     errorView.setText("Email cant be empty");
-
-
                 } else if (passwordTextInput.getText().toString().contentEquals("")) {
-
                     errorView.setText("Password cant be empty");
-
                 } else {
-
-
                     mAuth.signInWithEmailAndPassword(emailTextInput.getText().toString(), passwordTextInput.getText().toString())
                             .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -81,22 +66,6 @@ public class SignInActivity extends AppCompatActivity {
                                             setResult(RESULT_OK, null);
                                             startActivity(HomeActivity);
                                             SignInActivity.this.finish();
-//                                            if (user.isEmailVerified()) {
-//
-//
-//                                                System.out.println("Email Verified : " + user.isEmailVerified());
-//                                                Intent HomeActivity = new Intent(SignInActivity.this, MainActivity.class);
-//                                                setResult(RESULT_OK, null);
-//                                                startActivity(HomeActivity);
-//                                                SignInActivity.this.finish();
-//
-//
-//                                            } else {
-//
-//                                                sendVerifyMailAgainButton.setVisibility(View.VISIBLE);
-//                                                errorView.setText("Please Verify your EmailID and SignIn");
-//
-//                                            }
                                         }
 
                                     } else {
@@ -112,26 +81,8 @@ public class SignInActivity extends AppCompatActivity {
 
                                 }
                             });
-
-
                 }
-
-
             }
         });
-
-
-//        forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Intent forgotPasswordActivity = new Intent(SignInActivity.this, ForgotPasswordActivity.class);
-//                startActivity(forgotPasswordActivity);
-//                SignInActivity.this.finish();
-//
-//            }
-//        });
-
-
     }
 }

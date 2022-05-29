@@ -8,8 +8,9 @@
     tools:ignore="UselessParent">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="214dp"
         android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -17,7 +18,7 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="6dp"
             android:gravity="bottom|left"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -26,27 +27,48 @@
 
         <TextView
             android:id="@+id/dueDate"
-            android:layout_width="match_parent"
+            android:layout_width="206dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="6dp"
             android:gravity="top|left"
             android:textColor="@android:color/black"
             android:textSize="14sp"
             tools:ignore="RtlHardcoded" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal|right"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/deleteButton"
-            android:layout_width="101dp"
-            android:layout_height="wrap_content"
-            android:gravity="top|right"
-            android:text="@string/delete_task_button" />
+            android:layout_width="39dp"
+            android:layout_height="50dp"
+            android:drawableTop="@android:drawable/ic_menu_delete"
+            android:gravity="center_horizontal|right"
+            android:scaleType="fitCenter" />
 
         <Button
             android:id="@+id/editButton"
-            android:layout_width="101dp"
-            android:layout_height="wrap_content"
-            android:gravity="top|right"
-            android:text="@string/edit_task_button" />
+            android:layout_width="39dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:drawableTop="@android:drawable/ic_menu_edit"
+            android:gravity="center_horizontal|right"
+            android:scaleType="fitCenter" />
+
+
+        <!--        <Button-->
+        <!--            android:id="@+id/editButton"-->
+        <!--            android:layout_width="62dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="20dp"-->
+        <!--            android:drawableRight="@android:drawable/ic_menu_edit"-->
+        <!--            android:gravity="center_horizontal|top" />-->
     </LinearLayout>
 
 </LinearLayout>

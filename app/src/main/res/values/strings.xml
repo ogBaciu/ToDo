@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">FirebaseLogin</string>
+    <string name="app_name">To Do List</string>
     <string name="welcome">Welcome</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
-    <string name="TandC">I agree to the terms and condition of the AppCompany</string>
-    <string name="error_view">Error View</string>
+    <string name="TandC">I agree to the terms and condition</string>
+    <string name="error_view"></string>
     <string name="password">Password</string>
     <string name="email_hint">user@domain.com</string>
     <string name="email">Email</string>

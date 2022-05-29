@@ -2,6 +2,7 @@ package com.example.todolist;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 
 //import com.google.protobuf.Internal;
@@ -52,6 +54,9 @@ public class TaskListAdapter extends ArrayAdapter<TaskModel> {
             @Override
             public void onClick(View view) {
                 TaskModel taskModel = getItem(position);
+                Intent intent = new Intent("notification.receiver");
+                intent.putExtra("taskName", taskModel.getName());
+                LocalBroadcastManager.getInstance(getContext()).sendBroadcast(intent);
                 Log.d("####### Delete", taskModel.getuuid());
                 database.child("test").child(taskModel.getuuid()).removeValue();
             }
@@ -61,7 +66,7 @@ public class TaskListAdapter extends ArrayAdapter<TaskModel> {
             @Override
             public void onClick(View v) {
                 TaskModel taskModel = getItem(position);
-                new AddNewTask(taskModel.getuuid(), taskModel.getName(), taskModel.getDueDate()).show(getSupportFragmentManager , AddNewTask.TAG);
+                 new AddNewTask(taskModel.getuuid(), taskModel.getName(), taskModel.getDueDate()).show(getSupportFragmentManager , AddNewTask.TAG);
             }
         });
 

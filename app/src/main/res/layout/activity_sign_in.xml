@@ -72,23 +72,12 @@
             android:layout_height="wrap_content"
             android:text="@string/sign_in" />
 
-        <Button
-            android:id="@+id/forgotPasswordButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/forgot_password" />
-
         <TextView
             android:id="@+id/signInErrorView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/error_view" />
 
-        <Button
-            android:id="@+id/verifyEmailAgainButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/email_verify_again" />
 
     </LinearLayout>
 

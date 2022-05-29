@@ -42,8 +42,6 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.signUpButton);
         agreementCheckBox = findViewById(R.id.agreementCheckbox);
         errorView = findViewById(R.id.signUpErrorView);
-
-
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,11 +75,11 @@ public class SignUpActivity extends AppCompatActivity {
                                                                     SignUpActivity.this);
 
                                                             // set title
-                                                            alertDialogBuilder.setTitle("Please Verify Your EmailID");
+                                                            alertDialogBuilder.setTitle("Account created");
 
                                                             // set dialog message
                                                             alertDialogBuilder
-                                                                    .setMessage("A verification Email Is Sent To Your Registered EmailID, please click on the link and Sign in again!")
+                                                                    .setMessage("Please Sign in now!")
                                                                     .setCancelable(false)
                                                                     .setPositiveButton("Sign In", new DialogInterface.OnClickListener() {
                                                                         public void onClick(DialogInterface dialog, int id) {
